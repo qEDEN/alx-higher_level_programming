@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Check if PYFILE environment variable is set
+if [ -z "$PYFILE" ]; then
+    echo "Error: PYFILE environment variable is not set."
+    exit 1
+fi
+
+# Check if the specified Python file exists
+if [ ! -f "$PYFILE" ]; then
+    echo "Error: The specified Python file '$PYFILE' does not exist."
+    exit 1
+fi
+
+# Extract the filename (without extension) from PYFILE
+filename="${PYFILE%.*}"
+
+# Compile the Python file and create a .pyc file
+python3 -m py_compile "$PYFILE"
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    echo "Compiling $PYFILE ..."
+    
+    # Rename the .pyc file to match the desired output filename
+    mv "__pycache__/$filename.cpython-$(python3 -c 'import sys; print(sys.implementation.cache_tag)')" "$filename.pyc"
+    
+    # Remove the __pycache__ directory
+    rm -rf "__pycache__"
+    
+    # Check if the script produces the correct output for test cases
+    output1=$(python3 "$filename.pyc" "Chicago" 3)
+    if [ "$output1" == "Chcago" ]; then
+        echo "Output for case: removecharat(\"Chicago\", 3) is correct."
+    else
+        echo "Error: Output for case: removecharat(\"Chicago\", 3) is incorrect."
+        exit 1
+    fi
+    
+    # Add more test cases here as needed
+    
+    echo "Compilation completed successfully."
+else
+    echo "Error: Compilation failed for $PYFILE."
+    exit 1
+fi
