@@ -19,8 +19,9 @@ python3 -m py_compile "$PYFILE"
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
     echo "Compilation successful."
-    # Rename the compiled file to the desired output filename
-    mv "__pycache__/${BASENAME}.cpython-*.pyc" "$OUTPUT_FILE"
+    # Find the compiled file and rename it to the desired output filename
+    COMPILED_FILE=$(find "__pycache__" -name "${BASENAME}.cpython-*.pyc" -print -quit)
+    mv "$COMPILED_FILE" "$OUTPUT_FILE"
     echo "Output filename: $OUTPUT_FILE"
     # Clean up the __pycache__ directory
     rm -r "__pycache__"
