@@ -16,7 +16,7 @@ python3 -m compileall "$PYFILE"
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
     echo "Compilation successful."
-    mv "__pycache__/$PYFILEC" .
+    mv "__pycache__/$PYFILEC" "$PYFILEC"
     rm -r "__pycache__"
 else
     echo "Compilation failed."
