@@ -16,13 +16,12 @@ python3 -m py_compile "$PYFILE"
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
     echo "Compilation successful."
+
+    # Find and move the compiled file to the current directory
+    find . -type f -name "${PYFILE%.*}.pyc" -exec mv {} . \;
+
+    # Clean up the __pycache__ directory
+    rm -rf __pycache__
 else
     echo "Compilation failed."
-    exit 1
 fi
-
-# Move the compiled file to the current directory
-mv "__pycache__/$PYFILEC" .
-
-# Clean up the __pycache__ directory
-rm -r "__pycache__"
