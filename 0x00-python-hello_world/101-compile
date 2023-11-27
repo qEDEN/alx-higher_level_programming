@@ -2,12 +2,15 @@
 
 # Check if PYFILE environment variable is set
 if [ -z "$PYFILE" ]; then
-    echo "Error: PYFILE environment variable is not set."
+    echo "Error: PYFILE environment variable not set."
     exit 1
 fi
 
+# Get the base filename without extension
+BASENAME=$(basename "$PYFILE" .py)
+
 # Set the output filename
-PYFILEC="${PYFILE%.*}.pyc"
+OUTPUT_FILE="${BASENAME}.pyc"
 
 # Compile the Python script
 echo "Compiling $PYFILE ..."
@@ -16,12 +19,11 @@ python3 -m py_compile "$PYFILE"
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
     echo "Compilation successful."
-
-    # Find and move the compiled file to the current directory
-    find . -type f -name "${PYFILE%.*}.pyc" -exec mv {} . \;
-
+    # Rename the compiled file to the desired output filename
+    mv "__pycache__/${BASENAME}.cpython-*.pyc" "$OUTPUT_FILE"
+    echo "Output filename: $OUTPUT_FILE"
     # Clean up the __pycache__ directory
-    rm -rf __pycache__
+    rm -r "__pycache__"
 else
-    echo "Compilation failed."
+    echo "Error: Compilation failed."
 fi
