@@ -9,6 +9,9 @@ fi
 # Set the output filename
 PYFILEC="${PYFILE%.*}.pyc"
 
+# Create the __pycache__ directory
+mkdir -p "__pycache__"
+
 # Compile the Python script
 echo "Compiling $PYFILE ..."
 python3 -m compileall "$PYFILE"
