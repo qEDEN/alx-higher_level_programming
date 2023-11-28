@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import math
+
 def pow(a, b):
     """
     Computes the value of a^b.
@@ -10,6 +12,10 @@ def pow(a, b):
     Returns:
     - The result of a^b
     """
+    # Handle the case when exponent is zero
+    if b == 0:
+        return 1
+
     result = 1
 
     # Handle the case when base is 0 and exponent is negative
@@ -25,14 +31,8 @@ def pow(a, b):
     for _ in range(b):
         result *= a
 
-    # Check if the result is close to zero
     epsilon = 1e-20
-    if -epsilon < result < epsilon:
-        return 0
-
-    # Round to two decimal places if necessary
-    if result % 1 == 0:
-        return int(result)
+    if math.isclose(result, 0, abs_tol=epsilon):
+        return result
     else:
-        return round(result, 2)
-    
+        return result
