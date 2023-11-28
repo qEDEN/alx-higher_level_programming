@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 import random
 
-number = random.randint()
+number = random.randint(-10, 10)
 
 # Print the assigned number
 print(number, end=" ")
