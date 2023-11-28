@@ -13,7 +13,3 @@ def fizzbuzz():
             print("Buzz", end=" ")
         else:
             print(i, end=" ")
-
-# Test the fizzbuzz function
-fizzbuzz()
-print("")
