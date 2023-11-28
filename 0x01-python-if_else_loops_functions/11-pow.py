@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import math
 
 def pow(a, b):
     """
@@ -32,7 +31,7 @@ def pow(a, b):
         result *= a
 
     epsilon = 1e-20
-    if math.isclose(result, 0, abs_tol=epsilon):
+    if abs(result) < epsilon:
         return result
     else:
         return result
