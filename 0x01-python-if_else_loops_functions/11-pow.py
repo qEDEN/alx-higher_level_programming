@@ -32,9 +32,11 @@ def pow(a, b):
 
     epsilon = 1e-20
     if result % 1 == 0:
-        return round(result, 2)
+        return int(result)
     else:
-        if abs(result) < epsilon:
-            return result
-        else:
-            return result
+        round(result, 2)
+
+    if abs(result) < epsilon:
+        return result
+    else:
+        return result
