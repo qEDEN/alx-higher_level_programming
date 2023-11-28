@@ -37,6 +37,6 @@ def pow(a, b):
         return round(result, 2)
 
     if abs(result) < epsilon:
-        return result
+        result
     else:
         return result
