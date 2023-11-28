@@ -25,4 +25,14 @@ def pow(a, b):
     for _ in range(b):
         result *= a
 
-    return result
+    # Check if the result is close to zero
+    epsilon = 1e-20
+    if -epsilon < result < epsilon:
+        return 0
+
+    # Round to two decimal places if necessary
+    if result % 1 == 0:
+        return int(result)
+    else:
+        return round(result, 2)
+    
