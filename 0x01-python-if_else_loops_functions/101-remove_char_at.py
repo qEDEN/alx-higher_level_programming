@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def remove_char_at(s, n):
     """
     Creates a copy of the string, removing the character at the position n.
