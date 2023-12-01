@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import importlib.util
 
 def get_names_from_pyc_file(file_path):
