@@ -1,23 +1,16 @@
-#!/usr/bin/python3
-import dis
-import types
-import sys
+import importlib.util
+
+def get_names_from_pyc_file(file_path):
+    spec = importlib.util.spec_from_file_location("hidden_module", file_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    return [name for name in dir(module) if not name.startswith('__')]
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("Usage: ./4-hidden_discovery.py <compiled_module.pyc>")
+    file_path = "hidden_4.pyc"
+    names = get_names_from_pyc_file(file_path)
+    names.sort()
 
-    filename = sys.argv[1]
-
-    with open(filename, 'rb') as file:
-        code = compile(file.read(), filename, 'exec')
-
-    names = set()
-    for instr in dis.get_instructions(code):
-        if instr.opcode == dis.opmap['STORE_NAME']:
-            name = instr.argval
-            if not name.startswith('__'):
-                names.add(name)
-
-    for name in sorted(names):
+    for name in names:
         print(name)
