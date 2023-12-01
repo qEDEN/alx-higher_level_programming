@@ -12,6 +12,5 @@ if __name__ == "__main__":
     file_path = "hidden_4.pyc"
     names = get_names_from_pyc_file(file_path)
     names.sort()
-
     for name in names:
         print(name)
