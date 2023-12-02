@@ -1,4 +1,5 @@
-#include <python3.10/Python.h>
+#include <Python.h>
+
 /**
  * print_python_list_info - Print information about a Python list
  * @p: Pointer to a Python list (PyObject *)
