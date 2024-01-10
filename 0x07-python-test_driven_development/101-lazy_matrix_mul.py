@@ -28,8 +28,3 @@ def lazy_matrix_mul(m_a, m_b):
         return result.tolist()
     except ValueError as e:
         raise ValueError("Matrices cannot be multiplied") from e
-
-if __name__ == "__main__":
-    # Test cases
-    print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
-    print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
