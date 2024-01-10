@@ -178,4 +178,3 @@ Checking for more than 2 args:
 	 Traceback (most recent call last):
 	 ...
 	 TypeError: matrix_divided() takes 2 positional arguments but 3 were given
-     
