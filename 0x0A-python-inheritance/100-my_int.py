@@ -17,4 +17,3 @@ class MyInt(int):
     def __ne__(self, other):
         """what was == is now !="""
         return int(self) == other
-

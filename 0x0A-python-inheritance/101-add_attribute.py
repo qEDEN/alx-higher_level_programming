@@ -8,4 +8,3 @@ def add_attribute(prmObject, prmName, prmValue):
         raise TypeError("can't add new attribute")
     if (not hasattr(prmObject, prmName)):
         prmObject.__setattr__(prmName, prmValue)
-
